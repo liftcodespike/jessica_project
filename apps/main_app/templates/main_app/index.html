@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Welcome, {{request.session.user_first_name}}! | <a href="/logout">Logout</a></p>
+
+	<h3>Here are the other users:</h3>
+	{%for user in other_users %}
+		<p>name: <a href="show/{{user.id}}"> {{user.first_name}} </a> | #comments: {{user.comments.all.count}}</p>
+	{%endfor%}
+</body>
+</html>

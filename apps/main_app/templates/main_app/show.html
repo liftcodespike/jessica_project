@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a href="/home">Go back</a>
+	<h4>Name: {{shown_user.first_name}} {{shown_user.last_name}}</</h4>
+
+	<h3>Here are this users comments:</h3>
+
+	{%for comment in shown_user.comments.all %}
+		<p>{{comment.poster.first_name}} said: "{{comment.content}}"</p>
+	{%endfor%}
+
+
+
+
+
+
+	<form action='/comment/add' method="post">
+		{%csrf_token%}
+		<input type="text" name="content" placeholder="Enter a comment to leave this User.">
+		<input type="hidden" value='{{shown_user.id}}' name='user_id'>
+		<input type="hidden" value='{{request.session.user_id}}' name='poster_id'>
+		<input type="submit" value='Add comment!'>
+	</form>
+
+</body>
+</html>

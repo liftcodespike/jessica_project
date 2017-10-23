@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Welcome, {{request.session.user_first_name}}!  | <a href="/logout">LoGoUt</a></p>
+
+	<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Action!</th>
+	</tr>
+	
+		{% for user in users %}
+			{% if  user.id != request.session.user_id %}
+				<tr>
+					<th>{{user.first_name}}</th>
+					<th>{{user.last_name}}</th>
+					<th><a href="/delete/user/{{user.id}}">Delete this user!</a></th>
+				</tr>
+			{% endif %}
+		{%endfor%}
+	
+	</table>
+</body>
+</html>
